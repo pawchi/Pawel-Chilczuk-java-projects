@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class TasksApplication extends SpringBootServletInitializer {
+public class TasksApplication/* extends SpringBootServletInitializer*/ {
 
 	public static void main(String[] args) {
 
@@ -15,8 +15,8 @@ public class TasksApplication extends SpringBootServletInitializer {
 		SpringApplication.run(TasksApplication.class, args);
 	}
 
-	@Override //wykorzystanie zewnetrznego servera Tomcat
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application){
-		return application.sources(TasksApplication.class);
-	}
+	//@Override //wykorzystanie zewnetrznego servera Tomcat
+	//protected SpringApplicationBuilder configure(SpringApplicationBuilder application){
+		//return application.sources(TasksApplication.class);
+	//}
 }
