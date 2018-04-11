@@ -14,9 +14,5 @@ public class TasksApplication /*extends SpringBootServletInitializer*/ {
 
 		SpringApplication.run(TasksApplication.class, args);
 	}
-	/*
-	@Override //wykorzystanie zewnetrznego servera Tomcat
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application){
-		return application.sources(TasksApplication.class);
-	}*/
+
 }
