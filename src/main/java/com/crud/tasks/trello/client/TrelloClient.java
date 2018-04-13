@@ -30,21 +30,20 @@ public class TrelloClient {
     @Autowired
     private RestTemplate restTemplate;
 
+
+    private URI buildUrl(String trelloEndpoint, String username, String trelloKey, String token, String fields) {
+        URI url = UriComponentsBuilder.fromHttpUrl(trelloEndpoint + "/members/" + username + "/boards")
+                .queryParam("key", trelloKey)
+                .queryParam("token", token)
+                .queryParam("fields", fields).build().encode().toUri();
+        return url;
+
+    }
+
     public List<TrelloBoardDto> getTrelloBoards() {
 
-        //1 - Mozna tak
-        /*
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject(
-                trelloApiEndpoint+"/members/pawchi/boards"+"?key="+trelloAppKey+"?token="+trelloToken, TrelloBoardDto[].class);
-                */
-
-        //2-mozna tez tak - wykorzystujemy klasę UriComponentsBuilder, która pozwala na budowanie adresu URL
-        URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/members/pawchi/boards")
-                .queryParam("key", trelloAppKey)
-                .queryParam("token", trelloToken)
-                .queryParam("fields", "name,id").build().encode().toUri();
-
-        TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
+                buildUrl(trelloApiEndpoint, trelloUsername, trelloAppKey, trelloToken, "name,id"), TrelloBoardDto[].class);
 
         if (boardsResponse != null) {
             return Arrays.asList(boardsResponse);
